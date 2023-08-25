@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: loadtest50-poi-map-app-dev
+  annotations:
+    argocd/app-name: loadtest50-poi-map-app-dev
+    backstage.io/kubernetes-id: loadtest50-poi-map-app
+    backstage.io/kubernetes-namespace: loadtest50
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh-atl/loadtest50-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/dev-pipelines/ns/loadtest50/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/k8s/ns/loadtest50/deployments/loadtest50-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.j0i9yf30.eastus2.aroapp.io/#https://github.com/rhdh-atl/loadtest50-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://loadtest50-poi-map-app-loadtest50.apps.j0i9yf30.eastus2.aroapp.io
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/loadtest50"
+  system: workshop-system-loadtest50
+  consumesApis:
+    - gateway-api-loadtest50
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-loadtest50
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/loadtest50"
